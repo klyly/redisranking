@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>新增奖牌</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<base th:href="@{/static}">
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div id="top_content">
+					<div id="header">
+						<div id="rightheader">
+							<p>
+								<br />
+							</p>
+						</div>
+						<div id="topheader">
+							<h1 id="title">
+								<a href="#">为奥运健儿加油！</a>
+							</h1>
+						</div>
+						<div id="navigation">
+						</div>
+					</div>
+				<div id="content">
+					<p id="whereami">
+					</p>
+					<h1>
+						新增奖牌:
+					</h1>
+					<form id="addForm">
+						<table cellpadding="0" cellspacing="0" border="0"
+							class="form_table">
+							<tr>
+								<td valign="middle" align="right">
+									国家:
+								</td>
+								<td valign="middle" align="left">
+									<input type="text" class="inputgri" id="country" name="country" />
+								</td>
+							</tr>
+							<tr>
+								<td valign="middle" align="right">
+									金牌:
+								</td>
+								<td valign="middle" align="left">
+									<input type="number" min="0" class="inputgri" id="goldNum" name="goldNum" />
+								</td>
+							</tr>
+							<tr>
+								<td valign="middle" align="right">
+									银牌:
+								</td>
+								<td valign="middle" align="left">
+									<input type="number" min="0" class="inputgri" id="silverNum" name="silverNum" />
+								</td>
+							</tr>
+							<tr>
+								<td valign="middle" align="right">
+									铜牌:
+								</td>
+								<td valign="middle" align="left">
+									<input type="number" min="0" class="inputgri" id="bronzeNum" name="bronzeNum" />
+								</td>
+							</tr>
+						</table>
+						<p>
+							<input type="button" id="btn" class="button" value="提交" onClick="sentCommit()" />
+						</p>
+					</form>
+				</div>
+			</div>
+			<div id="footer">
+				<div id="footer_bg">
+					千锋体育@123.com
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script th:src="@{/js/bootstrap_3.3.7_js_bootstrap.min.js}"></script>
+	<script>
+		function sentCommit(){
+			// var objectAjax= $("#addForm").serialize();
+			var countryName = $("#country").val();
+			var goldCount = $("#goldNum").val();
+			var silverCount = $("#silverNum").val();
+			var bronzeCount = $("#bronzeNum").val();
+			$.ajax({
+				url: "/addMedal",
+				type: "post",
+				data: {"countryName": countryName,"goldCount":goldCount,"silverCount":silverCount,"bronzeCount":bronzeCount},
+				// data: objectAjax,
+				success: function (data) {
+					console.log("success")
+				}
+			})
+		}
+	</script>
+</html>

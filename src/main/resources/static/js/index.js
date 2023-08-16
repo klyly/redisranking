@@ -1,0 +1,6 @@
+$(function () {
+    allChecked();
+});
+function allChecked() {
+
+}
